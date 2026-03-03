@@ -1,0 +1,14 @@
+# Pastas pesadas (Nunca subir)
+node_modules/
+*/node_modules/
+
+# Arquivos de Build do Next.js
+.next/
+*/.next/
+out/
+build/
+
+# Arquivos de Segurança e Logs
+.env
+.env.*
+npm-debug.log*
