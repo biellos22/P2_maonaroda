@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const providersRoutes = require('./routes/providersRoutes'); // Importa só rotas de busca
+const providersRoutes = require('./routes/providersRoutes'); 
 
 connectDB();
 const app = express();
@@ -11,5 +11,5 @@ app.use(express.json());
 
 app.use('/api', providersRoutes);
 
-const PORT = 5002; // Porta dedicada!
+const PORT = 5002;
 app.listen(PORT, () => console.log(`🔎 Microsserviço de BUSCA rodando na porta ${PORT}`));

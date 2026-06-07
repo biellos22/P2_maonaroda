@@ -1,23 +1,42 @@
 const User = require('../models/User');
-
 class UserFactory {
-  static create(payload) {
-    const { nome, email, senha, tipo, telefone, cidade, bairro, categoria, descricao } = payload;
-
-    if (tipo === 'prestador') {
-      if (!categoria) throw new Error('A categoria é obrigatória para prestadores.');
-      return new User({
-        nome, email, senha, tipo, telefone, cidade, bairro, categoria, descricao
-      });
+  static create(data) {
+    if (data.tipo === 'cliente') {
+      if (!data.nome || !data.email || !data.senha) {
+        throw new Error('Dados incompletos para Cliente.');
+      }
+      return {
+        nome: data.nome,
+        email: data.email,
+        senha: data.senha,
+        tipo: 'cliente'
+      };
     } 
-    
-    if (tipo === 'cliente') {
+    else if (data.tipo === 'prestador') {
+      if (!data.nome || !data.email || !data.senha || !data.telefone || !data.categoria || !data.bairro) {
+        throw new Error('Dados incompletos para Prestador. Telefone, Categoria e Bairro são obrigatórios.');
+      }
+      return {
+        nome: data.nome,
+        email: data.email,
+        senha: data.senha,
+        telefone: data.telefone,
+        categoria: data.categoria,
+        bairro: data.bairro,
+        tipo: 'prestador'
+      };
+    } 
+    else if (data.tipo === 'admin') {
       return new User({
-        nome, email, senha, tipo, telefone, cidade, bairro
+        nome: data.nome,
+        email: data.email,
+        senha: data.senha,
+        tipo: 'admin'
       });
     }
-
-    throw new Error('Tipo de usuário inválido fornecido à Factory.');
+    else {
+      throw new Error('Tipo de usuário inválido.');
+    }
   }
 }
 

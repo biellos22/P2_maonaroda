@@ -3,15 +3,12 @@ const User = require('../models/User');
 class SearchByBairro {
   execute(bairro) { return User.find({ tipo: 'prestador', bairro }).select('-senha'); }
 }
-
 class SearchByCategoria {
   execute(categoria) { return User.find({ tipo: 'prestador', categoria }).select('-senha'); }
 }
-
 class SearchCombinar {
   execute(bairro, categoria) { return User.find({ tipo: 'prestador', bairro, categoria }).select('-senha'); }
 }
-
 class SearchContexto {
   constructor() { this.strategy = null; }
   setStrategy(strategy) { this.strategy = strategy; }

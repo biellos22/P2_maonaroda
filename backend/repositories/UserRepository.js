@@ -8,8 +8,6 @@ class UserRepository {
   async save(userInstance) {
     return await userInstance.save();
   }
-
-  // Já vamos deixar o método de busca pronto para depois
   async findProviders(filter) {
     return await User.find(filter).select('-senha');
   }

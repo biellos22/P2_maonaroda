@@ -9,6 +9,7 @@ const bairrosDeMarica = [
   'Jardim Guaratiba', 'Caju', 'Manoel Ribeiro', 'Espraiado', 'Vale da Figueira', 'Bananal'
 ];
 
+
 const categoriasDeServico = [
   'Eletricista', 'Encanador', 'Pintor', 'Pedreiro', 'Gesseiro', 'Marceneiro', 'Serralheiro',
   'Vidraceiro', 'Técnico em ar-condicionado', 'Técnico em eletrônicos / eletrodomésticos',
@@ -30,10 +31,17 @@ const UserSchema = new mongoose.Schema({
   nome: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   senha: { type: String, required: true },
-  tipo: { type: String, required: true, enum: ['cliente', 'prestador'] },
-  telefone: { type: String, required: true },
+  tipo: { type: String, required: true, enum: ['cliente', 'prestador', 'admin'] },
+  telefone: { 
+    type: String, 
+    required: function() { return this.tipo !== 'admin'; } 
+  },
   cidade: { type: String, required: true, default: 'Maricá' },
-  bairro: { type: String, required: true, enum: bairrosDeMarica },
+  bairro: { 
+    type: String, 
+    enum: bairrosDeMarica,
+    required: function() { return this.tipo !== 'admin'; }
+  },
   categoria: { type: String, enum: categoriasDeServico },
   descricao: { type: String, maxlength: 500 },
 }, { timestamps: true });
