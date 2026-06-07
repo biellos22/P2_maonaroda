@@ -16,12 +16,19 @@ const bairrosDeMarica = [
 
 const categoriasDeServico = [
   'Eletricista', 'Encanador', 'Pintor', 'Pedreiro', 'Gesseiro', 'Marceneiro', 'Serralheiro',
-  'Vidraceiro', 'Técnico em ar-condicionado', 'Técnico em eletrônicos', 'Diarista', 'Faxineira', 
-  'Limpeza pós-obra', 'Jardinagem', 'Piscineiro', 'Cuidador de idosos', 'Pet sitter', 'Dog walker', 
-  'Manicure/pedicure', 'Maquiadora', 'Designer de sobrancelhas', 'Depiladora', 'Esteticista', 
-  'Massagista', 'Personal stylist', 'Professor particular', 'Aulas de música', 'Mecânico', 
-  'Lavador de carros', 'Motorista particular', 'Reboque', 'Transporte escolar', 'Motoboy', 
-  'Contador', 'Designer gráfico', 'Web designer', 'Fotógrafo', 'Técnico em TI', 'Serviços gerais'
+  'Vidraceiro', 'Técnico em ar-condicionado', 'Técnico em eletrônicos / eletrodomésticos',
+  'Diarista', 'Faxineira', 'Limpeza pós-obra', 'Limpeza de estofados', 'Jardinagem', 'Piscineiro',
+  'Cuidador de idosos', 'Pet sitter', 'Dog walker', 'Serviços de pet shop domiciliar',
+  'Manicure/pedicure', 'Maquiadora', 'Designer de sobrancelhas', 'Depiladora', 'Esteticista',
+  'Massagista', 'Personal stylist', 'Professor particular', 'Aulas de música', 'Aulas de inglês / idiomas',
+  'Aulas de informática', 'Reforço para ENEM ou concursos', 'Treinador pessoal / personal trainer',
+  'Mecânico', 'Lavador de carros a domicílio', 'Motorista particular', 'Reboque / guincho',
+  'Transporte escolar', 'Motoboy / entregador', 'Contador', 'Designer gráfico', 'Web designer',
+  'Fotógrafo', 'Filmagem de eventos', 'Técnico em TI / manutenção de computadores',
+  'Digitador / assistente virtual', 'Garçom / copeiro', 'Barman', 'Buffet', 'Decorador de festas',
+  'DJ', 'Animador infantil', 'Locação de brinquedos', 'Engenheiro civil', 'Mestre de obras',
+  'Topógrafo', 'Corretor de imóveis', 'Costureira', 'Personal organizer', 'Montador de móveis',
+  'Instalador de TV/Internet', 'Serviços gerais (faz-tudo)'
 ];
 
 export default function CadastroPage() {
@@ -53,7 +60,7 @@ export default function CadastroPage() {
         descricao: tipoUsuario === 'cliente' ? undefined : formData.descricao
       };
       
-      await axios.post('http://127.0.0.1:5000/api/register', dataToSend);
+      await axios.post('http://127.0.0.1:5001/api/register', dataToSend);
       router.push('/'); 
     } catch (err) {
       console.error(err);

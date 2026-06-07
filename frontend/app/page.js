@@ -22,7 +22,7 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/login', formData);
+      const response = await axios.post('http://127.0.0.1:5001/api/login', formData);
       
       // Salva os dados (incluindo o bairro) no navegador para usar na busca
       localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -40,7 +40,7 @@ export default function LoginPage() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', padding: '20px' }}>
       <div className="card" style={{ width: '100%', maxWidth: '400px' }}>
-        <h1 className="title">Maricá Service</h1>
+        <h1 className="title">Mão na Roda</h1>
         <p className="subtitle">Acesse sua conta</p>
 
         <form onSubmit={handleSubmit}>

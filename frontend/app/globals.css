@@ -77,14 +77,20 @@ body {
 }
 
 /* Formulários */
-.form-group { margin-bottom: 1rem; }
+.form-group { 
+  margin-bottom: 1.5rem; 
+  max-width: 400px; /* Limita a largura para as caixas não ficarem gigantes */
+  margin-left: auto; /* Empurra para o centro */
+  margin-right: auto; /* Empurra para o centro */
+}
 
 .label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--text-dark);
+  text-align: center; /* Centraliza os textos "Qual serviço?" e "Qual bairro?" */
 }
 
 .input, .select {
@@ -94,10 +100,14 @@ body {
   border-radius: 8px;
   font-size: 1rem;
   background: #fff;
+  text-align: center; /* Centraliza o texto que o usuário escolhe dentro da caixa */
 }
 
 .btn {
   width: 100%;
+  max-width: 400px; /* Deixa o botão do mesmo tamanho exato das caixas */
+  display: block;
+  margin: 0 auto; /* Garante que o botão fique no centro do card */
   padding: 0.8rem;
   background-color: var(--primary);
   color: white;
@@ -108,16 +118,23 @@ body {
   cursor: pointer;
   transition: 0.2s;
 }
+
 .btn:hover { background-color: var(--primary-hover); }
 
-/* --- CORREÇÃO DOS CARDS DE PRESTADORES --- */
+/* --- CARDS DE PRESTADORES (CORRIGIDO) --- */
 
 .grid-providers {
   display: grid;
-  /* Cria colunas automáticas de no mínimo 320px */
+  /* Cria colunas automáticas */
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
   gap: 20px;
   margin-top: 30px;
+  
+  /* GARANTE A CENTRALIZAÇÃO DA GRADE INTEIRA */
+  justify-content: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .provider-card {
@@ -165,6 +182,7 @@ body {
 
 .info-row {
   display: flex;
+  justify-content: space-between; /* Afasta o rótulo (Telefone:) do valor (O número) */
   align-items: center;
   margin-bottom: 8px;
   font-size: 0.95rem;
@@ -173,7 +191,6 @@ body {
 
 .info-label {
   font-weight: 600;
-  width: 80px; /* Alinha os textos */
   color: #374151;
 }
 

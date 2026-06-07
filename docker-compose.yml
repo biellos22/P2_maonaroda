@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. Microsserviço de Usuários
+  users-service:
+    build: ./backend
+    container_name: maonaroda_users
+    command: npm run dev:users
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+
+  # 2. Microsserviço de Busca
+  providers-service:
+    build: ./backend
+    container_name: maonaroda_providers
+    command: npm run dev:providers
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+
+  # 3. Frontend Next.js
+  frontend-web:
+    build: ./frontend
+    container_name: maonaroda_frontend
+    ports: # Tiramos a linha do command
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    depends_on:
+      - users-service
+      - providers-service

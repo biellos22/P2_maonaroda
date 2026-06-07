@@ -38,7 +38,6 @@ const UserSchema = new mongoose.Schema({
   descricao: { type: String, maxlength: 500 },
 }, { timestamps: true });
 
-// Índice para otimizar a busca de prestadores
 UserSchema.index({ tipo: 1, categoria: 1, bairro: 1 });
 
 module.exports = mongoose.model('User', UserSchema);
