@@ -4,8 +4,8 @@ class UserRepository {
   async findByEmail(email) {
     return await User.findOne({ email });
   }
-
-  async save(userInstance) {
+  async save(userData) {
+    const userInstance = new User(userData);
     return await userInstance.save();
   }
   async findProviders(filter) {

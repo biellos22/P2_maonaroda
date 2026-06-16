@@ -1,14 +1,18 @@
 const User = require('../models/User');
+
 class UserFactory {
   static create(data) {
     if (data.tipo === 'cliente') {
-      if (!data.nome || !data.email || !data.senha) {
+      if (!data.nome || !data.email || !data.senha || !data.telefone || !data.bairro) {
         throw new Error('Dados incompletos para Cliente.');
       }
       return {
         nome: data.nome,
         email: data.email,
         senha: data.senha,
+        telefone: data.telefone,
+        bairro: data.bairro,
+        cidade: data.cidade || 'Maricá',
         tipo: 'cliente'
       };
     } 
@@ -23,6 +27,8 @@ class UserFactory {
         telefone: data.telefone,
         categoria: data.categoria,
         bairro: data.bairro,
+        cidade: data.cidade || 'Maricá',
+        descricao: data.descricao,
         tipo: 'prestador'
       };
     } 
