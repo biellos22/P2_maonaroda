@@ -48,7 +48,7 @@ export default function BuscaPage() {
     setProviders([]);
 
     try {
-      const response = await axios.get('https://p2-maonaroda.onrender.com/api/providers/api/providers', {
+      const response = await axios.get('https://p2-maonaroda.onrender.com/api/providers', {
         params: { categoria: filtroCategoria || '', bairro: filtroBairro || '' },
       });
       setProviders(response.data);
