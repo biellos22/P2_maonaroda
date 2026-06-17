@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
-const API_BASE_URL = 'https://p2-maonaroda.onrender.com';
-
 const bairrosDeMarica = [
   'Centro', 'Flamengo', 'Mumbuca', 'Itapeba', 'Parque Nanci', 'Ponta Grossa', 
   'São José do Imbassaí', 'Araçatiba', 'Jacaroá', 'Barra de Maricá', 'Zacarias', 
@@ -42,22 +40,22 @@ export default function BuscaPage() {
   const [error, setError] = useState(null);
 
   const fetchProviders = async (filtroBairro, filtroCategoria) => {
-    setLoading(true);
-    setError(null);
-    setSearched(true);
-    setProviders([]);
+  setLoading(true);
+  setError(null);
+  setSearched(true);
+  setProviders([]);
 
-    try {
-      const response = await axios.get(`${API_BASE_URL}/api/providers`, {
-        params: { categoria: filtroCategoria || '', bairro: filtroBairro || '' },
-      });
-      setProviders(response.data);
-    } catch (err) {
-      setError('Erro ao buscar. Verifique se o backend está rodando.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const response = await axios.get(`${API_BASE_URL}/providers`, {
+      params: { categoria: filtroCategoria || '', bairro: filtroBairro || '' },
+    });
+    setProviders(response.data);
+  } catch (err) {
+    setError('Erro ao buscar. Verifique se o backend está rodando.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     const userString = localStorage.getItem('user');
@@ -96,6 +94,7 @@ export default function BuscaPage() {
             <p className="subtitle">Filtre por categoria ou mude o bairro.</p>
           </div>
 
+          {/* Removido o estilo inline que impedia a centralização do CSS */}
           <form onSubmit={handleSearch}>
             <div className="form-group">
               <label className="label">Qual serviço?</label>
@@ -154,6 +153,7 @@ export default function BuscaPage() {
                 )}
               </div>
               
+              {/* O Frontend agora usa a URL limpa gerada pelo Adapter no Backend */}
               <a 
                 href={provider.whatsappUrl}
                 target="_blank"

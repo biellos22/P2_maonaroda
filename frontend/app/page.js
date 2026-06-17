@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-const API_BASE_URL = 'https://p2-maonaroda.onrender.com';
+const API_BASE_URL = 'https://p2-maonaroda.onrender.com/api';
 
 export default function LoginPage() {
   const router = useRouter();

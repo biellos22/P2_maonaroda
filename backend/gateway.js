@@ -8,17 +8,24 @@ spawn('node', ['server-providers.js'], { stdio: 'inherit', env: process.env });
 const proxy = httpProxy.createProxyServer({ changeOrigin: true });
 
 const server = http.createServer((req, res) => {
-    if (req.url.startsWith('/api')) {
-        if (req.url.startsWith('/api/providers')) {
-            proxy.web(req, res, { target: 'http://localhost:5002' });
-        } else {
+    console.log(`Gateway recebeu: ${req.method} ${req.url}`);
 
-            proxy.web(req, res, { target: 'http://localhost:5001' });
-        }
-    } else {
+    if (req.url.startsWith('/api/providers')) {
+        proxy.web(req, res, { target: 'http://localhost:5002' });
+    } 
+    else if (req.url.startsWith('/api/login') || req.url.startsWith('/api/register')) {
+        proxy.web(req, res, { target: 'http://localhost:5001' });
+    } 
+    else {
         res.writeHead(404);
         res.end('Not Found');
     }
+});
+
+proxy.on('error', (err, req, res) => {
+    console.error('Erro no Proxy:', err);
+    res.writeHead(502);
+    res.end('Bad Gateway');
 });
 
 const PORT = process.env.PORT || 3000;
