@@ -5,6 +5,8 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+const API_BASE_URL = 'https://p2-maonaroda.onrender.com';
+
 const bairrosDeMarica = [
   'Centro', 'Flamengo', 'Mumbuca', 'Itapeba', 'Parque Nanci', 'Ponta Grossa', 
   'São José do Imbassaí', 'Araçatiba', 'Jacaroá', 'Barra de Maricá', 'Zacarias', 
@@ -60,7 +62,7 @@ export default function CadastroPage() {
         descricao: tipoUsuario === 'cliente' ? undefined : formData.descricao
       };
       
-      await axios.post('http://127.0.0.1:5001/api/register', dataToSend);
+      await axios.post('https://p2-maonaroda.onrender.com/api/register', dataToSend);
       router.push('/'); 
     } catch (err) {
       console.error(err);

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
+const API_BASE_URL = 'https://p2-maonaroda.onrender.com';
+
 const bairrosDeMarica = [
   'Centro', 'Flamengo', 'Mumbuca', 'Itapeba', 'Parque Nanci', 'Ponta Grossa', 
   'São José do Imbassaí', 'Araçatiba', 'Jacaroá', 'Barra de Maricá', 'Zacarias', 
@@ -46,7 +48,7 @@ export default function BuscaPage() {
     setProviders([]);
 
     try {
-      const response = await axios.get('http://127.0.0.1:5002/api/providers', {
+      const response = await axios.get('https://p2-maonaroda.onrender.com/api/providers/api/providers', {
         params: { categoria: filtroCategoria || '', bairro: filtroBairro || '' },
       });
       setProviders(response.data);

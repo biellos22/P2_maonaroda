@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
+const API_BASE_URL = 'https://p2-maonaroda.onrender.com';
+
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: '', senha: '' });
@@ -22,9 +24,8 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const response = await axios.post('http://127.0.0.1:5001/api/login', formData);
+      const response = await axios.post('https://p2-maonaroda.onrender.com/api/login', formData);
       
-      // Salva os dados (incluindo o bairro) no navegador para usar na busca
       localStorage.setItem('user', JSON.stringify(response.data.user));
       
       router.push('/busca');
