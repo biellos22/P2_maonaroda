@@ -2,8 +2,8 @@ const http = require('http');
 const httpProxy = require('http-proxy');
 const { spawn } = require('child_process');
 
-spawn('node', ['server-users.js'], { stdio: 'inherit' });
-spawn('node', ['server-providers.js'], { stdio: 'inherit' });
+spawn('node', ['server-users.js'], { stdio: 'inherit', env: process.env });
+spawn('node', ['server-providers.js'], { stdio: 'inherit', env: process.env });
 
 const proxy = httpProxy.createProxyServer();
 
@@ -18,6 +18,12 @@ const server = http.createServer((req, res) => {
         res.writeHead(404);
         res.end('Not Found');
     }
+});
+
+proxy.on('error', (err, req, res) => {
+    console.error('Proxy Error:', err);
+    res.writeHead(500);
+    res.end('Proxy Error');
 });
 
 const PORT = process.env.PORT || 3000;
