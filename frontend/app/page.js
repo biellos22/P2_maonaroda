@@ -24,7 +24,7 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const response = await axios.post('https://p2-maonaroda.onrender.com/api/login', formData);
+      const response = await axios.post(`${API_BASE_URL}/login`, formData);
       
       localStorage.setItem('user', JSON.stringify(response.data.user));
       

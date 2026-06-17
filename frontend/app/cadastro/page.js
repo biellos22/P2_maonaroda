@@ -5,7 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const API_BASE_URL = 'https://p2-maonaroda.onrender.com';
+const API_BASE_URL = 'https://p2-maonaroda.onrender.com/api';
 
 const bairrosDeMarica = [
   'Centro', 'Flamengo', 'Mumbuca', 'Itapeba', 'Parque Nanci', 'Ponta Grossa', 
@@ -61,8 +61,8 @@ export default function CadastroPage() {
         categoria: tipoUsuario === 'cliente' ? undefined : formData.categoria,
         descricao: tipoUsuario === 'cliente' ? undefined : formData.descricao
       };
-      
-      await axios.post('https://p2-maonaroda.onrender.com/api/register', dataToSend);
+
+      await axios.post(`${API_BASE_URL}/register`, dataToSend);
       router.push('/'); 
     } catch (err) {
       console.error(err);
@@ -78,7 +78,6 @@ export default function CadastroPage() {
       <div className="card" style={{ width: '100%', maxWidth: '700px' }}>
         <h2 className="title" style={{ marginBottom: '20px' }}>Crie sua conta</h2>
 
-        {/* Botões de Alternância (Cliente / Prestador) */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '30px' }}>
           <button 
             type="button" 
@@ -125,7 +124,6 @@ export default function CadastroPage() {
             </div>
           </div>
 
-          {/* Área exclusiva do Prestador */}
           {tipoUsuario === 'prestador' && (
             <div style={{ background: '#f9fafb', padding: '20px', borderRadius: '8px', marginTop: '20px', border: '1px solid #e5e7eb' }}>
               <h3 style={{ fontSize: '1.1rem', color: '#1f2937', marginBottom: '15px', fontWeight: 'bold' }}>Dados Profissionais</h3>

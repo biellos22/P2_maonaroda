@@ -48,7 +48,7 @@ export default function BuscaPage() {
     setProviders([]);
 
     try {
-      const response = await axios.get('https://p2-maonaroda.onrender.com/api/providers', {
+      const response = await axios.get(`${API_BASE_URL}/api/providers`, {
         params: { categoria: filtroCategoria || '', bairro: filtroBairro || '' },
       });
       setProviders(response.data);
@@ -96,7 +96,6 @@ export default function BuscaPage() {
             <p className="subtitle">Filtre por categoria ou mude o bairro.</p>
           </div>
 
-          {/* Removido o estilo inline que impedia a centralização do CSS */}
           <form onSubmit={handleSearch}>
             <div className="form-group">
               <label className="label">Qual serviço?</label>
@@ -155,7 +154,6 @@ export default function BuscaPage() {
                 )}
               </div>
               
-              {/* O Frontend agora usa a URL limpa gerada pelo Adapter no Backend */}
               <a 
                 href={provider.whatsappUrl}
                 target="_blank"
